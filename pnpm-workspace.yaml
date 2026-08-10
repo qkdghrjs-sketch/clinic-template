@@ -1,0 +1,10 @@
+# Windows 안정 설치용 pnpm 11 설정
+# - isolated 방식의 symlink node_modules가 Windows/백신/OneDrive 환경에서 EBUSY를 만들 수 있어 hoisted로 고정합니다.
+# - packageImportMethod: copy는 하드링크/심볼릭링크 문제를 더 줄이기 위한 설정입니다.
+nodeLinker: hoisted
+packageImportMethod: copy
+verifyDepsBeforeRun: warn
+strictDepBuilds: false
+allowBuilds:
+  sharp: true
+  unrs-resolver: true

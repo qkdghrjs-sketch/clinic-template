@@ -1,0 +1,29 @@
+문제가 생겼을 때 이 순서대로 입력하세요.
+
+1) 서버/Node 종료
+
+taskkill /F /IM node.exe /T
+
+2) 이전 설치 흔적 삭제
+
+if exist node_modules rmdir /s /q node_modules
+if exist .next rmdir /s /q .next
+if exist package-lock.json del package-lock.json
+if exist pnpm-lock.yaml del pnpm-lock.yaml
+
+3) Windows 안전 설치
+
+corepack pnpm@11.10.0 install --node-linker=hoisted --package-import-method=copy
+
+4) 홈페이지 실행
+
+corepack pnpm@11.10.0 dev
+
+5) 브라우저에서 열기
+
+http://localhost:3000
+
+성공 문구:
+Local: http://localhost:3000
+Ready in ...
+GET / 200

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>병원 위치 카카오맵</title>
+<!--
+  [병원별 수정 필요]
+  아래 지도는 템플릿 미리보기용 예시 위치입니다. 실제 병원 위치로 반드시 교체하세요.
+  교체 방법: 카카오맵(map.kakao.com)에서 병원을 검색 → "지도 퍼가기" → 생성된 코드의
+  timestamp / key / container id 값을 아래 코드에 그대로 덮어쓰면 됩니다.
+-->
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body, html { width: 100%; height: 100%; overflow: hidden; }
+  .root_daum_roughmap { width: 100% !important; height: 100% !important; }
+  .root_daum_roughmap .wrap_map { width: 100% !important; height: 100% !important; }
+  .root_daum_roughmap .wrap_map img { max-width: none !important; }
+  .root_daum_roughmap iframe { width: 100% !important; height: 100% !important; }
+  .root_daum_roughmap .wrap_controllers { display: none !important; }
+  #daumRoughmapContainer1785101978423 { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+</style>
+</head>
+<body>
+<div id="daumRoughmapContainer1785101978423" class="root_daum_roughmap root_daum_roughmap_landing"></div>
+<script charset="UTF-8" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+<script charset="UTF-8">
+  new daum.roughmap.Lander({
+    "timestamp" : "1785101978423",
+    "key" : "ruwwsr6o4if",
+    "mapWidth" : "640",
+    "mapHeight" : "360"
+  }).render();
+</script>
+</body>
+</html>
