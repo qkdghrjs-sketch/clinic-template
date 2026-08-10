@@ -65,21 +65,21 @@ Tailwind v4, CSS-first. There is **no `tailwind.config`** — the design tokens 
 
 This is Next.js 16 — `params` in page components is a `Promise` and must be awaited. The `node_modules/next/dist/docs/` guides referenced in the user-level AGENTS.md are **not** present in this install; consult official Next 16 docs instead of assuming Next 13/14 conventions.
 
-CLAUDE.md 맨 아래에 다음 섹션을 추가해줘 (기존 내용은 절대 수정 금지):
-
-## 운영 규칙 (Thomas)
-- 병원 정보(주소, 전화, 진료시간 등) 수정 요청 시: clinic.ts의 기존 값을 먼저 보여주고 확인받은 뒤 수정할 것 (신규 개원 병원이라 변동 잦음)
-- 네이버플레이스 상세설명이 이 사이트 문구 기반 — 사이트 문구 수정 시 플레이스에도 반영 필요한지 알려줄 것
-- 타겟: 재진 프로그램 관심 환자, 남양주 다산·도농 지역 주민
-- 수정 후 모바일 화면 기준 확인 결과를 보고할 것
-
-추가한 다음 검증 하나만 해줘:
-src/lib/clinic.ts 안의 병원 정보(의원명, 주소, 전화, 진료시간)를 요약해서 보여줘.
-내가 아는 정보와 맞는지 확인할게.
-
 ## 템플릿 사용 규칙
 - 이 폴더는 원본 템플릿. 여기서는 절대 특정 병원 정보를 입력하지 않는다
 - 새 병원 제작 = 이 폴더를 복사한 뒤 그 복사본에서 작업
 - 병원 정보는 clinic.ts에만 입력 (단일 진실 원칙)
 - 새 병원 세팅 시: clinic.ts 채우기 → servicePages.ts의 [병원별 수정 필요] 주석 부분 검토
   → 이미지 교체 → build/lint/tsc 통과 확인
+
+## 운영 규칙
+- 병원 정보(주소, 전화, 진료시간 등) 수정 요청 시: `clinic.ts`의 기존 값을 먼저 보여주고 확인받은 뒤 수정할 것 (신규 개원 병원은 정보 변동이 잦음)
+- 네이버플레이스 상세설명은 이 사이트 문구를 기반으로 작성됨 — 사이트 문구를 수정하면 플레이스에도 반영이 필요한지 알려줄 것
+- 수정 후 모바일 화면 기준으로 확인한 결과를 보고할 것
+- 의료광고법 주의: 최상급 표현(최고·유일), 치료효과 보장, 환자 체험담 강조 금지
+
+## 병원별 운영 정보 [병원별 수정 필요]
+> 이 항목은 템플릿에서는 비워둡니다. 복사본에서 해당 병원의 값으로 채워주세요.
+- 타겟 환자층: (예: 특정 진료 프로그램 관심 환자층, 주요 상권·거주 지역 주민)
+- 경쟁 병원 / 지역 특성:
+- 홍보 채널(네이버플레이스·블로그 등) 담당 여부:
