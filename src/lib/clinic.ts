@@ -96,22 +96,41 @@ export const phoneDisplay = clinic.phone || clinic.phoneLabel || "전화번호 �
 
 /**
  * [병원별 수정 필요] 병원 사진 URL 목록.
- * 아래 주소는 템플릿 미리보기용 임시 이미지이므로 실제 병원 사진으로 교체하세요.
- * 외부 도메인을 새로 쓸 경우 next.config.ts의 images.remotePatterns에 도메인을 추가해야 합니다.
+ *
+ * 지금 들어 있는 사진은 Unsplash 무료 이미지(상업적 이용 가능, 출처 표기 불필요)로,
+ * 템플릿 미리보기용입니다. 실제 병원 사진으로 반드시 교체하세요.
+ *
+ * 교체 방법
+ *  - 직접 찍은 사진: public/ 폴더에 넣고 "/사진이름.jpg" 형태로 적으면 됩니다.
+ *  - 외부 주소: next.config.ts의 images.remotePatterns에 그 도메인을 추가해야 화면에 나옵니다.
+ *
+ * 이 배열은 메인 진료센터 카드, 첫 화면 배경, 장비 섹션 배경에 돌아가며 쓰입니다.
  */
 export const suppliedImages = [
-  "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/0096ae636476f.jpeg",
-  "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/d09582650d23a.jpeg",
-  "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/d288b11769fdf.jpeg",
-  "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/ba80d7b2a1e30.jpeg",
-  "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/83b782ece6616.jpeg",
-  "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/2b1277cce5597.jpeg",
-  "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/2c0c5ad591567.jpeg",
-  "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/fdc2e19cf0ebf.jpeg",
-  "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/35a0923007d7b.jpeg",
-  "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/ad11e19d578cf.jpeg",
-  "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/78a2fc5f55b63.jpeg",
-  "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/75e7a0379a144.jpeg"
+  // 0 진료 상담 (건강검진센터 카드 · 첫 화면 1번)
+  "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?auto=format&fit=crop&w=1600&q=80",
+  // 1 검사·시술 (내시경센터 카드)
+  "https://images.unsplash.com/photo-1571772996211-2f02c9727629?auto=format&fit=crop&w=1600&q=80",
+  // 2 혈압 측정 (만성질환클리닉 카드)
+  "https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?auto=format&fit=crop&w=1600&q=80",
+  // 3 청진기·약 (특수클리닉 카드)
+  "https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=1600&q=80",
+  // 4 의료진 (첫 화면 2번)
+  "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1600&q=80",
+  // 5 검사실 장비
+  "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1600&q=80",
+  // 6 밝은 검사실 (장비 섹션 배경)
+  "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1600&q=80",
+  // 7 검사 장비
+  "https://images.unsplash.com/photo-1579154204601-01588f351e67?auto=format&fit=crop&w=1600&q=80",
+  // 8 진료실 (첫 화면 3번)
+  "https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=1600&q=80",
+  // 9 영상 판독
+  "https://images.unsplash.com/photo-1666214280557-f1b5022eb634?auto=format&fit=crop&w=1600&q=80",
+  // 10 진료 상담
+  "https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&w=1600&q=80",
+  // 11 청진기
+  "https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=1600&q=80"
 ];
 
 export const pickImage = (index: number) => suppliedImages[index % suppliedImages.length];
@@ -130,57 +149,57 @@ export type TourImage = {
  */
 export const tourImages: TourImage[] = [
   {
-    src: "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/2a03861c92f5f.png",
+    src: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1600&q=80",
     title: "병원 입구",
     desc: "엘리베이터에서 내리면 바로 보이는 입구입니다."
   },
   {
-    src: "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/138d630f13667.png",
+    src: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80",
     title: "복도 사인월",
     desc: "정확한 진단, 편안한 진료 — 건강한 내일을 함께 만듭니다."
   },
   {
-    src: "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/7142a43b33aa6.png",
+    src: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1600&q=80",
     title: "진료 안내",
     desc: "건강검진·위대장내시경·초음파검사·영양수액을 한 곳에서 안내드립니다."
   },
   {
-    src: "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/07a121b64bfdb.png",
+    src: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80",
     title: "출입문",
     desc: "진료시간과 대표전화를 문 앞에서 바로 확인하실 수 있습니다."
   },
   {
-    src: "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/ab363d2c88272.png",
+    src: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?auto=format&fit=crop&w=1600&q=80",
     title: "대기 공간",
     desc: "차분한 조도와 넉넉한 좌석으로 편안하게 기다리실 수 있습니다."
   },
   {
-    src: "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/f303060880bc0.png",
+    src: "https://images.unsplash.com/photo-1519494080410-f9aa76cb4283?auto=format&fit=crop&w=1600&q=80",
     title: "진료 동선",
     desc: "진료실·내시경실·초음파실·X-RAY실이 한 복도에 이어져 이동이 짧습니다."
   },
   {
-    src: "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/8d522780472ba.png",
+    src: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1600&q=80",
     title: "내시경실",
     desc: "위·대장내시경과 수면내시경을 진행하는 공간입니다."
   },
   {
-    src: "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/612515882da15.png",
+    src: "https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1600&q=80",
     title: "초음파실",
     desc: "복부·갑상선 초음파 검사를 독립된 공간에서 진행합니다."
   },
   {
-    src: "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/e3017cf2a8e84.png",
+    src: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=80",
     title: "초음파 검사실 내부",
     desc: "검사 장비와 베드를 갖춰 편안한 자세로 검사를 받으실 수 있습니다."
   },
   {
-    src: "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/cfe36d83f117d.png",
+    src: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1600&q=80",
     title: "X-RAY실",
     desc: "흉부·복부 촬영으로 필요한 검사를 원내에서 바로 확인합니다."
   },
   {
-    src: "https://cdn.imweb.me/upload/S20260108b9005a7eb2710/0bc561918c7f8.png",
+    src: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=1600&q=80",
     title: "주사실",
     desc: "예방접종과 영양수액 치료가 이루어지는 공간입니다."
   }
