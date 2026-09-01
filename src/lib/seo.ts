@@ -85,3 +85,9 @@ export function findTopicByTitle(title: string) {
  */
 export const clinicPhone: string = clinic.phone;
 export const hasPhone = clinicPhone.trim().length > 0;
+
+/**
+ * 화면·llms.txt 에 쓸 전화번호 문자열.
+ * 저장소마다 clinic.ts 에 phoneDisplay 가 있기도 없기도 해서 여기서 만듭니다.
+ */
+export const phoneText = hasPhone ? clinicPhone : "전화번호 준비 중";

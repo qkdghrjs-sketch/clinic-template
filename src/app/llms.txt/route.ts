@@ -1,6 +1,6 @@
-import { clinic, doctors, phoneDisplay } from "@/lib/clinic";
+import { clinic, doctors } from "@/lib/clinic";
 import { servicePages } from "@/lib/servicePages";
-import { site, TARGET_REGIONS, LOCAL_TOPICS, IS_TEMPLATE } from "@/lib/seo";
+import { site, TARGET_REGIONS, LOCAL_TOPICS, IS_TEMPLATE, phoneText } from "@/lib/seo";
 
 /**
  * /llms.txt — AI가 이 병원을 정확히 읽어가도록 만드는 요약 파일.
@@ -48,7 +48,7 @@ ${templateNotice}
 - 병원명: ${clinic.name}
 - 진료과: 내과
 - 주소: ${clinic.address}
-- 전화: ${phoneDisplay}
+- 전화: ${phoneText}
 - 주차: ${clinic.parkingNotice}
 - 시설: ${clinic.facilityNotice}
 

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import SubPageHeader from "@/components/SubPageHeader";
 import ServiceDetailPage from "@/components/ServiceDetailPage";
-import { clinic, phoneDisplay } from "@/lib/clinic";
-import { localPairs, findTopicByTitle, IS_TEMPLATE } from "@/lib/seo";
+import { clinic } from "@/lib/clinic";
+import { localPairs, findTopicByTitle, IS_TEMPLATE, phoneText } from "@/lib/seo";
 import { localPageSchema, jsonLd } from "@/lib/schema";
 
 /**
@@ -84,7 +84,7 @@ export default async function LocalPage({ params }: Props) {
             </div>
             <div className="rounded-xl bg-white p-4">
               <dt className="text-sm font-semibold text-slate-500">전화</dt>
-              <dd className="mt-1 text-slate-800">{phoneDisplay}</dd>
+              <dd className="mt-1 text-slate-800">{phoneText}</dd>
             </div>
           </dl>
           <p className="mt-6 text-sm text-slate-500">
