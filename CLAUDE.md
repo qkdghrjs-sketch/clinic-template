@@ -18,7 +18,26 @@ corepack pnpm@11.10.0 lint     # eslint (flat config)
 npx tsc --noEmit               # typecheck; there is no `typecheck` script
 ```
 
-There is no test suite. Verification = `build` + `lint` + `tsc --noEmit`, plus loading pages in a dev server.
+There is no test suite. Verification = `build` + `lint` + `tsc --noEmit` + `pnpm check`, plus loading pages in a dev server.
+
+`pnpm check` (`scripts/check-compliance.mjs`) scans `src/lib` + `src/components` + `src/app` for Korean
+medical-advertising-law violations (최상급 / 유일 / 효과보장 / 비교광고 / 체험담 / 유인 / `○○` placeholders)
+and exits 1 on any 위반. Run it before every deploy.
+
+## Search exposure (GEO + Naver SEO)
+
+`src/lib/seo.ts` is the single source of truth. **`IS_TEMPLATE`** drives `robots.ts`, the layout's meta
+robots, and the `llms.txt` disclaimer together — never hardcode `index: false` in a component again.
+
+`src/lib/schema.ts` builds `MedicalClinic` / `Physician` / `FAQPage` / `MedicalWebPage` JSON-LD from
+`clinic.ts` and is injected in `layout.tsx`'s `<head>`. Values come from `clinic.ts` — do not duplicate them.
+
+Region pages live at `/local/[region]/[disease]`, NOT `/[region]/[disease]`. The root already has a
+`[...slug]` catch-all and 19 of 21 service slugs are two-segment (`chronic/hypertension`), so a
+root-level `[region]/[disease]` would take precedence and hijack every service page.
+
+`clinic` is declared `as const`, so `clinic.phone` narrows to the literal type `""`. Widen it to `string`
+before calling string methods (see `clinicPhone` in `seo.ts`).
 
 **Windows/pnpm:** `pnpm-workspace.yaml` pins `nodeLinker: hoisted` and `packageImportMethod: copy` to avoid `ERR_PNPM_EBUSY` symlink failures. Do not switch to isolated linking. On EBUSY, run `WINDOWS_RESET_AND_RUN.bat` (kills node, wipes `node_modules`/`.next`/lockfiles, reinstalls, starts dev).
 
