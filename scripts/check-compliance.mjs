@@ -25,6 +25,23 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const TARGET_DIRS = ["src/lib", "src/components", "src/app"];
 const TARGET_EXT = /\.(ts|tsx)$/;
 
+/**
+ * 문맥 예외 — 매치 주변에 아래 표현이 있으면 광고 문구가 아니라고 보고 넘어갑니다.
+ *
+ * 전부 실제 병원 사이트 검사에서 나온 오탐입니다. 지우지 마세요.
+ * - 국가검진기관 평가 '최우수' 등급, 학회 수상 → 기관이 부여한 사실이라 표기 가능
+ * - 성장호르몬 검사의 '최고 수치'(peak) → 의학 용어
+ * - '최고/최저 혈압' → 의학 용어
+ * - 실손보험 '보장범위', '비밀 보장' → 의료광고와 무관
+ * - '골밀도 검사가 유일한 방법' → 의학적 사실 서술
+ */
+const CONTEXT_SKIP = {
+  "최상급 표현":
+    /검진기관|평가\s*등급|국가\s*심사|공단|인증|grade|수상|학회\s*최우수|최우수전문의|최고\s*수치|ng\/mL|혈압/,
+  "치료효과 보장": /보험|비밀\s*보장|보장\s*범위|실손|청구|급여/,
+  "유일·독점": /유일한\s*(방법|검사|수단|길)/,
+};
+
 const RULES = [
   {
     id: "최상급 표현",
@@ -114,7 +131,13 @@ for (const file of files) {
     for (const rule of RULES) {
       rule.re.lastIndex = 0;
       const matches = [...line.matchAll(rule.re)];
+      const skip = CONTEXT_SKIP[rule.id];
       for (let n = 0; n < matches.length; n++) {
+        if (skip) {
+          const m = matches[n];
+          const s = Math.max(0, m.index - 30);
+          if (skip.test(line.slice(s, m.index + m[0].length + 30))) continue;
+        }
         if (!byRule.has(rule.id)) byRule.set(rule.id, []);
         byRule.get(rule.id).push({
           rule,
