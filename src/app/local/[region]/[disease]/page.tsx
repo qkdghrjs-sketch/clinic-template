@@ -24,6 +24,16 @@ import { localPageSchema, jsonLd } from "@/lib/schema";
 
 type Props = { params: Promise<{ region: string; disease: string }> };
 
+/**
+ * seo.ts 에 설정한 지역·주제 조합만 페이지로 만듭니다.
+ *
+ * dynamicParams = false 가 없으면 Next.js 가 목록에 없는 값도 요청 시 만들어 줍니다.
+ * 즉 /local/아무동네/고혈압 이 전부 200 으로 열립니다.
+ * 실제로 그렇게 동작하는 것을 확인했고, 검색엔진 입장에서는 내용이 거의 같은
+ * 페이지가 무한히 찍히는 셈이라 품질 평가에 불리합니다. 반드시 false 로 둡니다.
+ */
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return localPairs();
 }
